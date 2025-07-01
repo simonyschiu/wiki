@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block body %}
-    <h1>All Pages</h1>
+    <h1>{{ heading }}</h1>
 
     <ul>
         {% for entry in entries %}
-            <li><a href="/wiki/{{ entry|urlencode }}">{{ entry }}</a></li>
+            <li><a href="{% url 'wiki_page' title=entry %}">{{ entry }}</a></li>
         {% endfor %}
     </ul>
 

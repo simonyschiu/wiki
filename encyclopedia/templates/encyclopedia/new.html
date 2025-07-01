@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create a new encyclopedia
+{% endblock %}
+
+{% block body %}
+    <form action="{% url 'new' %}" method="post">
+        {% csrf_token %}
+        <label for="title" class="form-label">Title</label>
+        <input type="text" id="title" class="form-control" name="title" placeholder="Enter title..." required><br><br>
+        <label for="content" class="form-label">Content</label>
+        <textarea id="content" class="form-control" name="content" rows="20" cols="80" placeholder="Enter content..." required></textarea><br><br>
+        {% if return_code is None %}
+        {% elif return_code == 0 %}
+            <p class="text-success">Page saved successfully!</p>
+        {% else %}
+            <p class="text-danger">Page already exists!</p>
+        {% endif %}
+        <input type="submit" class="btn btn-primary" value="Save">
+        <input type="reset" class="btn btn-primary" value="Reset">
+{% endblock %}
